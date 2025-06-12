@@ -22,7 +22,7 @@ jobs:
       # Como conectar al servicio
       - name: Install redis cli
       # Instala apartado de redis para podernos conectar
-        run: apt-get update -y && apt-get install redis-tools -y
+        run: sudo apt-get update -y && sudo apt-get install redis-tools -y
 
       - name: test redis
         # usar redis cli para ocnectarnos al servicio
