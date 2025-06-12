@@ -9,3 +9,11 @@ jobs:
     steps:
       - name: Print Variable
         run: echo "${{ secrets.TOKEN_SECRET }}"
+
+      # Configuracion de la app
+      - name: setup
+        # Se utiliza un action para la instalacion de node o php, o lo que se utilice
+        uses: actions/setup-node@4
+        with:
+          node-version: '18'
+          
