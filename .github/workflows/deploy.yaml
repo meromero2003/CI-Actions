@@ -33,7 +33,7 @@ jobs:
 
       - name: Chekout
         # Posiciona dentro del directorio
-        uses: actions/chekout@v4
+        uses: actions/checkout@v4
 
       # Configuracion de la app
       - name: setup
