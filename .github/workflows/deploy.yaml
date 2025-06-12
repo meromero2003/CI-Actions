@@ -44,3 +44,7 @@ jobs:
 
       - name: Instalar dependencias
         run: npm install
+
+      - name: Run test
+        # Se hace test para valirdar que los cambios no rompan lo que esta en producicion
+        run: npm run test
