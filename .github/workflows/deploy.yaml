@@ -6,7 +6,28 @@ jobs:
   fisrt_job:
     runs-on: ubuntu-latest
 
+    # Uso de servicios se da a nivel de jobs
+    # Practicamente un contenedor de doker, se puede usar docker hub para buscar iamgenes
+    services: 
+      # Se define referente a contenedor a utilizar, similar a docker compose
+      # se define identificador (se instala)
+      redis:
+        # propiedades
+        image: redis
+        # mapeo de puertos
+        ports: 
+          - 6379:6379
+
     steps:
+      # Como conectar al servicio
+      - name: Install redis cli
+      # Instala apartado de redis para podernos conectar
+        run: apt-get update -y && apt-get install redis-tools -y
+
+      - name: test redis
+        # usar redis cli para ocnectarnos al servicio
+        run: redis-cli -h localhost -p 6379 ping 
+
       - name: Print Variable
         run: echo "${{ secrets.TOKEN_SECRET }}"
 
