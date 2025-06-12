@@ -19,17 +19,21 @@ jobs:
           - 6379:6379
 
     steps:
-      # Como conectar al servicio
-      - name: Install redis cli
-      # Instala apartado de redis para podernos conectar
-        run: sudo apt-get update -y && sudo apt-get install redis-tools -y
+      # # Como conectar al servicio
+      # - name: Install redis cli
+      # # Instala apartado de redis para podernos conectar
+      #   run: sudo apt-get update -y && sudo apt-get install redis-tools -y
 
-      - name: test redis
-        # usar redis cli para ocnectarnos al servicio
-        run: redis-cli -h localhost -p 6379 ping 
+      # - name: test redis
+      #   # usar redis cli para ocnectarnos al servicio
+      #   run: redis-cli -h localhost -p 6379 ping 
 
       - name: Print Variable
         run: echo "${{ secrets.TOKEN_SECRET }}"
+
+      - name: Chekout
+        # Posiciona dentro del directorio
+        uses: actions/chekout@v4
 
       # Configuracion de la app
       - name: setup
@@ -37,3 +41,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+
+      - name: Instalar dependencias
+        run: npm install
