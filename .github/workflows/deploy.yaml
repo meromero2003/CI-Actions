@@ -72,7 +72,7 @@ jobs:
       id-token: write #to verify the deployment originates from an appropiate source
 
     # Necesario para usar el deploy pages
-    enviroment:
+    environment:
       name: github-pages
       url: ${{ steps.deployment-pages.output.page_url }}
 
