@@ -48,10 +48,14 @@ jobs:
       - name: Run test
         # Se hace test para valirdar que los cambios no rompan lo que esta en producicion
         run: npm run test
+
+      - name: Build page
+        # Genera artefacto
+        run: npm run build
   
   deploy:
-  # condicional con always/succed/failure
-    if: ${{ always() }}
+  # condicional con always (fuerza a que se ejecute a pesar de que build fallo)/succed/failure
+    # if: ${{ always() }}
     runs-on: ubuntu-latest
     needs: build
 
