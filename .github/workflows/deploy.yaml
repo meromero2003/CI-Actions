@@ -3,7 +3,7 @@ name: Deploy
 on: push
 
 jobs:
-  fisrt_job:
+  build:
     runs-on: ubuntu-latest
 
     # Uso de servicios se da a nivel de jobs
@@ -48,3 +48,11 @@ jobs:
       - name: Run test
         # Se hace test para valirdar que los cambios no rompan lo que esta en producicion
         run: npm run test
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy
+        run: echo "Deploy"
