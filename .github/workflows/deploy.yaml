@@ -80,5 +80,5 @@ jobs:
       - name: Deploy
         id: deployment-pages
         # Despliega la pagina que subimos anteriormente a git hub pages
-        run: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4
         
