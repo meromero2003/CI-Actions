@@ -54,10 +54,11 @@ jobs:
         run: npm run build
       
       - name: Upload Artifact
-        # Action para subir el artefacto creado con el build a github pages
+        # Action para subir el artefacto creado con el build
         uses: actions/upload-pages-artifact@v3
         with:
           path: public/ 
+      
   
   deploy:
   # condicional con always (fuerza a que se ejecute a pesar de que build fallo)/succed/failure
@@ -65,6 +66,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
 
+  # Hya acciones que necesitan modificar cosas, por lo que hay que dar los permisos para dichos cambios
+    permissions:
+      pages: write #to deploy to pages
+      id-token: write #to verify the deployment originates from an appropiate source
+
+    # Necesario para usar el deploy pages
+    enviroment:
+      name: github-pages
+      url: ${{ steps.deployment-pages.output.page_url }}
+
     steps:
       - name: Deploy
-        run: echo "Deploy"
+        id: deployment-pages
+        # Despliega la pagina que subimos anteriormente a git hub pages
+        run: actions/deploy-pages@v4
+        
