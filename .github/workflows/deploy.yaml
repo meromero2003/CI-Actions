@@ -52,6 +52,12 @@ jobs:
       - name: Build page
         # Genera artefacto
         run: npm run build
+      
+      - name: Upload Artifact
+        # Action para subir el artefacto creado con el build a github pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/ 
   
   deploy:
   # condicional con always (fuerza a que se ejecute a pesar de que build fallo)/succed/failure
